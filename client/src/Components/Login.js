@@ -90,9 +90,15 @@ const Login = () => {
           <p className="error-message">This field is required</p>
         )}
         <button onClick={handleLogin}>Login</button>
+        {error && <p className="error-message">{error}</p>}
+        <p>
+          Are you new?
+          <span>
+            {" "}
+            <Link to="/signup">Signup</Link>
+          </span>
+        </p>
       </form>
-      {error && <p className="error-message">{error}</p>}
-      <Link to="/signup">Signup</Link>
     </div>
   );
 };

@@ -1,0 +1,233 @@
+:root {
+  --gray: #f1f1f1;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+}
+button {
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+.edit,
+.delete {
+  background-color: black;
+  color: white;
+}
+input,
+textarea {
+  border: none;
+  padding: 1rem 2rem;
+  background-color: var(--gray);
+  font-size: 1rem;
+}
+a,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+.error-message {
+  color: red;
+  margin-top: 1rem;
+}
+.footer {
+  display: flex;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.fa-github {
+  color: black;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.2);
+}
+/* Home */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: "Handjet", cursive;
+}
+.home h1 {
+  font-size: 5rem;
+  font-weight: 600;
+}
+.home button {
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+/* Login, Signup */
+.login,
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login form,
+.signup form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  width: 60%;
+  max-width: 600px;
+}
+.login form label,
+.signup form label {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+.login form input,
+.signup form input {
+  margin-top: 1rem;
+}
+.login form button,
+.signup form button {
+  margin-top: 1rem;
+}
+.login form p,
+.signup form p {
+  margin-top: 1rem;
+}
+.login form a,
+.signup form a {
+  color: blue;
+  margin-left: 0.1rem;
+}
+/* Main */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+.main button {
+  background-color: transparent;
+  padding: 0;
+}
+
+.main .header {
+  display: flex;
+  width: 60%;
+  max-width: 600px;
+  margin-top: 3rem;
+  justify-content: space-between;
+}
+.header button {
+  color: red;
+}
+
+.main .change {
+  margin-top: 1rem;
+}
+.change .modal form {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.main .friends-div,
+.main .rooms-div {
+  margin-top: 5rem;
+  width: 60%;
+  max-width: 600px;
+}
+.friends-div .friend,
+.rooms-div .room {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.friend .friend-name,
+.rooms-div .room-title {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+.friend button {
+  color: orange;
+}
+.rooms-div .room-title {
+  font-style: italic;
+}
+.rooms-div button {
+  color: red;
+}
+
+/* Chatroom */
+.chatroom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+.chatroom header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  max-width: 600px;
+  height: 10vh;
+}
+.chatroom header button {
+  background-color: transparent;
+  color: orange;
+  padding: 0;
+}
+.chatroom .messages {
+  flex: 1;
+  width: 60%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.messages .message {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 60%;
+  max-width: 250px;
+}
+.messages .message.mine {
+  align-self: flex-end;
+}
+.message .content {
+  display: flex;
+  gap: 1rem;
+}
+.content .name {
+  font-weight: 700;
+}
+.message .timestamp {
+  font-weight: 300;
+  font-style: italic;
+  text-align: end;
+  margin-top: 0.3rem;
+}
+.chatroom form {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 60%;
+  max-width: 600px;
+}
+.chatroom form input {
+  flex: 1;
+}

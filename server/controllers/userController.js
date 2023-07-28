@@ -15,6 +15,14 @@ exports.get_users = asyncHandler(async (req, res, next) => {
   res.json(allUsers);
 });
 
+exports.get_user = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.params.user_id)
+    .populate("friends")
+    .exec();
+
+  res.json(user);
+});
+
 exports.login = asyncHandler(async (req, res, next) => {
   const { username, password } = req.body;
 

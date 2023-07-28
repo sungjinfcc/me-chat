@@ -8,7 +8,7 @@ exports.get_messages = asyncHandler(async (req, res, next) => {
   const allMessages = await Message.find({ chatroom: req.params.chatroom_id })
     .populate("user")
     .populate("chatroom")
-    .sort({ timestamp: -1 })
+    .sort({ timestamp: 1 })
     .exec();
 
   res.json(allMessages);

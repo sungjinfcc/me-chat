@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../authContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -105,8 +105,15 @@ const Signup = () => {
           <p className="error-message">Passwords do not match</p>
         )}
         <button onClick={handleSignup}>Signup</button>
+        {error && <p className="error-message">{error}</p>}
+        <p>
+          Do you have an account?
+          <span>
+            {" "}
+            <Link to="/login">Login</Link>
+          </span>
+        </p>
       </form>
-      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

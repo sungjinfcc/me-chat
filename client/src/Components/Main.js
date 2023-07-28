@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../authContext";
 import { Link, useNavigate } from "react-router-dom";
-import _ from "lodash";
 
 function Main() {
   const { user, token, login, logout } = useAuth();
@@ -83,7 +82,7 @@ function Main() {
         return;
       }
       const data = await response.json();
-      navigator(`/chatroom/${data.id}`);
+      navigator(`/chatroom/${data.id}/${receiver}`);
     } catch (error) {
       setError("An unexpected error occurred. Please try again later.");
     }
@@ -160,49 +159,60 @@ function Main() {
 
   return (
     <div className="main">
-      {error && <p className="error-message">{error}</p>}
-      <h1>Welcome {user?.username}</h1>
-      {onEdit ? (
-        <div className="modal">
-          <form className="name-form">
-            <label htmlFor="name">Enter new name</label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <button onClick={handleSubmit}>Submit</button>
-          </form>
-        </div>
-      ) : (
-        <button onClick={() => setOnEdit(true)}>Edit</button>
-      )}
-      <button onClick={signout}>Logout</button>
-      <h2>Friends</h2>
-      <div className="friends">
-        {friends.map((friend) => {
-          return (
-            <div className="friend">
-              <div className="friend-name">{friend.username}</div>
-              <button onClick={() => startChat(friend._id)}>Start chat</button>
-            </div>
-          );
-        })}
+      <div className="header">
+        <h1>Welcome {user?.username}</h1>
+        <button onClick={signout}>Logout</button>
       </div>
-      <h2>Rooms</h2>
-      <div className="rooms">
-        {rooms.map((room) => {
-          return (
-            <div className="room">
-              <Link to={`/chatroom/${room._id}`}>
-                <div className="room-title">{room.title}</div>
-              </Link>
-              <button onClick={() => endChat(room._id)}>Exit</button>
-            </div>
-          );
-        })}
+      <div className="change">
+        {onEdit ? (
+          <div className="modal">
+            <form className="name-form">
+              <input
+                id="name"
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <button onClick={handleSubmit}>Submit</button>
+              <button onClick={() => setOnEdit(false)}>Cancel</button>
+            </form>
+          </div>
+        ) : (
+          <button onClick={() => setOnEdit(true)}>Change username</button>
+        )}
+      </div>
+      {error && <p className="error-message">{error}</p>}
+      <div className="friends-div">
+        <h2>Friends</h2>
+        <div className="friends">
+          {friends.map((friend) => {
+            return (
+              <div className="friend">
+                <div className="friend-name">{friend.username}</div>
+                <button onClick={() => startChat(friend._id)}>
+                  Start chat
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="rooms-div">
+        <h2>Rooms</h2>
+        <div className="rooms">
+          {rooms.map((room) => {
+            const receiver = room.users.find((userId) => userId !== user._id);
+            return (
+              <div className="room">
+                <Link to={`/chatroom/${room._id}/${receiver}`}>
+                  <div className="room-title">{room.title}</div>
+                </Link>
+                <button onClick={() => endChat(room._id)}>Exit</button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

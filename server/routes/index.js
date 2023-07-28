@@ -15,6 +15,7 @@ router.put(
   authenticateToken,
   user_controller.update_name
 );
+router.get("/user/:user_id", authenticateToken, user_controller.get_user);
 
 // Chatroom
 router.get("/chatrooms", chatroom_controller.get_chatrooms);

@@ -10,7 +10,12 @@ function Home() {
     isAuthenticated ? navigator("/main") : navigator("/login");
   };
 
-  return <button onClick={checkAuth}>Start</button>;
+  return (
+    <div className="home">
+      <h1>Welcome to Me Chat</h1>
+      <button onClick={checkAuth}>Start</button>
+    </div>
+  );
 }
 
 export default Home;

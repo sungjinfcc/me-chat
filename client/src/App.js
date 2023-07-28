@@ -30,7 +30,10 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/chatroom/:chatroom_id" element={<Chatroom />} />
+        <Route
+          path="/chatroom/:chatroom_id/:receiver_id"
+          element={<Chatroom />}
+        />
       </Routes>
       <Footer />
     </HashRouter>
