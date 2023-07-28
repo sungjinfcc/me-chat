@@ -13,7 +13,7 @@ function Home() {
   return (
     <div className="home">
       <h1>Welcome to Me Chat</h1>
-      <button onClick={checkAuth}>Start</button>
+      <button onClick={() => checkAuth()}>Start</button>
     </div>
   );
 }

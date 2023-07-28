@@ -179,7 +179,9 @@ function Main() {
             </form>
           </div>
         ) : (
-          <button onClick={() => setOnEdit(true)}>Change username</button>
+          <button onClick={() => setOnEdit(true)} className="text">
+            Change username
+          </button>
         )}
       </div>
       {error && <p className="error-message">{error}</p>}

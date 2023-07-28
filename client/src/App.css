@@ -43,6 +43,7 @@ a:visited {
   margin-bottom: 1rem;
   align-items: center;
   justify-content: center;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .fa-github {
   color: black;
@@ -66,11 +67,16 @@ a:visited {
 .home h1 {
   font-size: 5rem;
   font-weight: 600;
+  width: 70%;
+  max-width: 600px;
+  text-align: center;
 }
 .home button {
   margin-top: 1rem;
   font-size: 2rem;
   font-weight: 500;
+  width: 70%;
+  max-width: 300px;
 }
 /* Login, Signup */
 .login,
@@ -78,6 +84,7 @@ a:visited {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .login form,
 .signup form {
@@ -85,7 +92,7 @@ a:visited {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  width: 60%;
+  width: 90%;
   max-width: 600px;
 }
 .login form label,
@@ -116,6 +123,7 @@ a:visited {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .main button {
   background-color: transparent;
@@ -124,7 +132,7 @@ a:visited {
 
 .main .header {
   display: flex;
-  width: 60%;
+  width: 90%;
   max-width: 600px;
   margin-top: 3rem;
   justify-content: space-between;
@@ -141,11 +149,14 @@ a:visited {
   align-items: center;
   gap: 2rem;
 }
+.change .text {
+  font-style: italic;
+}
 
 .main .friends-div,
 .main .rooms-div {
   margin-top: 5rem;
-  width: 60%;
+  width: 90%;
   max-width: 600px;
 }
 .friends-div .friend,
@@ -175,12 +186,13 @@ a:visited {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .chatroom header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 60%;
+  width: 90%;
   max-width: 600px;
   height: 10vh;
 }
@@ -191,18 +203,22 @@ a:visited {
 }
 .chatroom .messages {
   flex: 1;
-  width: 60%;
+  width: 90%;
   max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: start;
+  padding: 1rem;
 }
 .messages .message {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  width: 60%;
-  max-width: 250px;
+  width: 50%;
+  max-width: 300px;
 }
 .messages .message.mine {
   align-self: flex-end;
@@ -225,7 +241,7 @@ a:visited {
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: 60%;
+  width: 90%;
   max-width: 600px;
 }
 .chatroom form input {

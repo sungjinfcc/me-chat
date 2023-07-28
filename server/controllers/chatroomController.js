@@ -20,7 +20,7 @@ exports.create_chatroom = [
 
     if (existingChatroom) {
       return res.status(400).json({
-        message: "Chatroom with the same users already exists.",
+        message: "Chatroom with the same user already exists.",
       });
     }
     const chatroom = new Chatroom({

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../authContext";
 
 function Chatroom() {
@@ -10,7 +10,7 @@ function Chatroom() {
   const [message, setMessage] = useState("");
   const [chatWith, setChatWith] = useState("");
   const navigator = useNavigate();
-  const location = useLocation();
+  const messagesContainerRef = useRef(null);
 
   const api = process.env.REACT_APP_API_BASE_URL;
 
@@ -113,11 +113,20 @@ function Chatroom() {
 
     return `${formattedHours}:${formattedMinutes}${ampm}`;
   }
+  const scrollToBottom = () => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
+    }
+  };
 
   useEffect(() => {
     getMessages();
     getNameFromId(receiver_id);
   }, []);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <div className="chatroom">
@@ -125,7 +134,7 @@ function Chatroom() {
         <h1 className="title">Chat with {chatWith}</h1>
         <button onClick={goBack}>back</button>
       </header>
-      <div className="messages">
+      <div className="messages" ref={messagesContainerRef}>
         {messages.map((m) => {
           const decodedMessage = m.message.replace(/&#x27;/g, "'");
           const isMine = m.user.username === user?.username;
