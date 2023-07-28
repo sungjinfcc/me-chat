@@ -2,10 +2,12 @@ const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 const Message = require("../models/message");
+const Chatroom = require("../models/chatroom");
 
 exports.get_messages = asyncHandler(async (req, res, next) => {
-  const allMessages = await Message.find()
+  const allMessages = await Message.find({ chatroom: req.params.chatroom_id })
     .populate("user")
+    .populate("chatroom")
     .sort({ timestamp: -1 })
     .exec();
 
@@ -20,9 +22,10 @@ exports.create_message = [
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
 
-    const message = new Message({
+    const newMessage = new Message({
       user: req.user._id,
-      message: message,
+      message: req.body.message,
+      chatroom: req.params.chatroom_id,
     });
 
     if (!errors.isEmpty()) {
@@ -30,7 +33,7 @@ exports.create_message = [
         message: errors.array()[0],
       });
     } else {
-      await message.save();
+      await newMessage.save();
       return res.json({
         message: "Message created",
       });
