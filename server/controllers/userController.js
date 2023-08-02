@@ -43,7 +43,7 @@ exports.login = asyncHandler(async (req, res, next) => {
   }
 
   jwt.sign(
-    { _id: user._id, username: user.username },
+    { _id: user._id, user: user },
     process.env.JWT_SECRET,
     { expiresIn: "24h" },
     (err, token) => {
@@ -77,7 +77,7 @@ exports.signup = asyncHandler(async (req, res, next) => {
   });
 
   jwt.sign(
-    { _id: newUser._id, username: newUser.username },
+    { _id: newUser._id, user: newUser },
     process.env.JWT_SECRET,
     { expiresIn: "24h" },
     (err, token) => {

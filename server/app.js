@@ -6,6 +6,10 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 require("dotenv").config();
 
+const compression = require("compression");
+const helmet = require("helmet");
+const RateLimit = require("express-rate-limit");
+
 const indexRouter = require("./routes/index");
 
 // Set up mongoose connection
@@ -24,6 +28,17 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 1000,
+});
+app.use(compression());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
+app.use(limiter);
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());

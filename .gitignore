@@ -2,6 +2,7 @@
 
 /server/node_modules
 /server/.env
+/server/fly.toml
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 /client/.env

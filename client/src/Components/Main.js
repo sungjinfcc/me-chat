@@ -30,7 +30,7 @@ function Main() {
 
       const data = await response.json();
       const filteredRooms = data.filter((room) =>
-        room.users.includes(user._id)
+        room.users.includes(user?._id)
       );
 
       setRooms(filteredRooms);
@@ -57,11 +57,11 @@ function Main() {
 
       const data = await response.json();
       const filteredFriends = data.filter(
-        (friend) => friend.username !== user.username
+        (friend) => friend.username !== user?.username
       );
       setFriends(filteredFriends);
     } catch (error) {
-      setError("An unexpected error occurred. Please try again later.");
+      setError("An unexpected error occurred 1. Please try again later.");
     }
   };
 
@@ -149,7 +149,12 @@ function Main() {
   const signout = () => {
     logout();
     localStorage.removeItem("token");
-    window.location.href = "/";
+    localStorage.removeItem("user");
+    navigator("/");
+  };
+
+  const tempAction = () => {
+    console.log(token, user);
   };
 
   useEffect(() => {
@@ -163,6 +168,7 @@ function Main() {
         <h1>Welcome {user?.username}</h1>
         <button onClick={signout}>Logout</button>
       </div>
+      <button onClick={tempAction}>Click</button>
       <div className="change">
         {onEdit ? (
           <div className="modal">
@@ -190,7 +196,7 @@ function Main() {
         <div className="friends">
           {friends.map((friend) => {
             return (
-              <div className="friend">
+              <div className="friend" key={friend._id}>
                 <div className="friend-name">{friend.username}</div>
                 <button onClick={() => startChat(friend._id)}>
                   Start chat
